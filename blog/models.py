@@ -1,4 +1,7 @@
 from django.db import models
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect, render
+
 
 # Add these:
 from wagtail.models import Page
@@ -19,6 +22,13 @@ class BlogIndexPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('intro')
     ]
+
+    #@login_required
+    def serve(self, request):
+        if request.user.is_authenticated:
+            return super().serve(request)
+        else:
+            return render(request, 'blog/login.html', {'page': self})
     
 
 # add this:

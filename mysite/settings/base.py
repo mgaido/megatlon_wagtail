@@ -175,3 +175,6 @@ WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
     ('fr', "French"),
     ('es', "Spanish"),
 ]
+
+WAGTAIL_FRONTEND_LOGIN_TEMPLATE = 'blog/login.html'
+WAGTAIL_FRONTEND_LOGIN_URL = '/accounts/login/'
