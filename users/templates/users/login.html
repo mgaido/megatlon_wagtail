@@ -1,0 +1,46 @@
+{% extends "users/layouts/users.html" %}
+
+{% block body-class %}
+{% endblock %}
+
+{% block header-class %}
+{% endblock %}
+
+{% block main %}
+    <section id="main" class="container 75%">
+        <header>
+            <h2>Iniciar Sesion</h2>
+        </header>
+        <div class="box">
+            <form name=f1 id="f1" method="post" >
+                {% csrf_token %}
+                <div class="row uniform 50%">
+                    <div class="6u 12u(mobilep)">
+                        <input type="text" name="username" id="username" value="" placeholder="Usuario" maxlength="50" required/>
+                    </div>
+                    <div class="6u 12u(mobilep)">
+                        <input type="password" id="password" name="password" value="" placeholder="Contraseña" pattern="[a-zA-Z0-9-_.@ ]{0,50}" maxlength="50" required/>
+                    </div>
+                </div>
+                <small id="documentoHelp" class="form-text text-muted">.</small>
+                <div class="row uniform">
+                    <div class="12u">
+                        <ul class="actions align-center">
+                            <li><input id="btsubmit" type="submit" value="Log In" /></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}
+
+{% block custom-js %}
+<script>
+    $(document).ready(function(){
+        $('#f1').submit(function(){
+            $('#btsubmit').prop('disabled', true);
+        });
+    });
+</script>
+{% endblock %}

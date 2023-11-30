@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 INSTALLED_APPS = [
     "blog",
-    "home",
+    #"home",
     "search",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "django.contrib.staticfiles",
+    "django.contrib.staticfiles",    
+    "users",
 ]
 
 MIDDLEWARE = [
@@ -178,3 +179,5 @@ WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
 
 WAGTAIL_FRONTEND_LOGIN_TEMPLATE = 'blog/login.html'
 WAGTAIL_FRONTEND_LOGIN_URL = '/accounts/login/'
+
+AUTH_USER_MODEL = 'users.CustomUser'

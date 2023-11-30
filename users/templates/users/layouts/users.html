@@ -1,0 +1,116 @@
+{% load static %}
+
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+        <title>{% block title %}Wagtail{% endblock %}</title>
+        
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        {% block custom-css %}
+        {% endblock %}
+
+        <link rel="stylesheet" href="{% static 'users/assets/css/main.css' %}" />
+		<link rel="stylesheet" href="{% static 'users/assets/css/mios.css' %}" />
+        <!--[if lte IE 8]><link rel="stylesheet" href="{% static 'users/assets/css/ie8.css' %}" /><![endif]-->
+        
+        <link rel="stylesheet" href="{% static 'toastr_alert/css/toastr.min.css' %}" />
+
+        {% block custom-css-priority %}
+        {% endblock %}
+	</head>
+	<body  {% block body-class %} class="landing" {% endblock %}>
+		<div id="page-wrapper">
+            {% block header %}
+			<!-- Header -->
+				<header id="header" {% block header-class %} class="alt" {% endblock %}>
+					<h1><a href="/">Wagtail</a></h1>
+					<nav id="nav">
+						<ul>
+                            {% if user.is_authenticated %}
+                                <li><a href="/">Home</a></li>
+                                {% block menu %}
+                                <li>
+                                    <a href="#" class="icon fa-angle-down">Menu</a>
+                                    <ul>
+                                        <li><a href="{% url 'users:password' %}">Cambio Contraseña</a></li>
+                                        <li><a href="{% url 'users:logout' %}">Desconectarse</a></li>
+                                    </ul>
+                                </li>
+                                {% endblock %}
+                            {% else %}
+                                <li><a href="{% url 'users:login' %}" class="button">Ingresar</a></li>
+                            {% endif %}
+                        </ul>
+					</nav>
+                </header>
+            {% endblock %}
+            
+
+            {% block banner %}
+            <!-- Banner -->
+            {% endblock %}
+
+
+            {% block main %}
+            <!-- Main -->
+            {% endblock %}
+
+
+            {% block footer %}
+
+            {% endblock %}
+        </div>
+        
+        <!-- Scripts -->
+            <script src="{% static 'users/assets/js/jquery.min.js' %}"></script>
+            <script src="{% static 'users/assets/js/jquery.dropotron.min.js' %}"></script>
+            <script src="{% static 'users/assets/js/jquery.scrollgress.min.js' %}"></script>
+            <script src="{% static 'users/assets/js/skel.min.js' %}"></script>
+            <script src="{% static 'users/assets/js/util.js' %}"></script>
+            <!--[if lte IE 8]><script src="{% static 'users/assets/js/ie/respond.min.js' %}"></script><![endif]-->
+            <script src="{% static 'users/assets/js/main.js' %}"></script>
+            <script src="{% static 'users/assets/js/include_html.js' %}"></script>
+
+            <script src="{% static 'toastr_alert/js/toastr.min.js' %}"></script>
+
+            <script>
+                $(document).ready(function(){
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-bottom-right",
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                        }                
+                    
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}toastr["success"]("{{ message }}", "{{message.extra_tags}}"){% endif %}
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}toastr["error"]("{{ message }}", "{{message.extra_tags}}"){% endif %}
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}toastr["warning"]("{{ message }}", "{{message.extra_tags}}"){% endif %}
+
+                        {% endfor %}
+                    {% endif %}
+                    
+                })
+            </script>
+
+            {% block custom-js %}
+            {% endblock %}
+
+    </body>
+</html>
+        

@@ -1,0 +1,47 @@
+.seleccionador{
+	margin-top:35px;
+    margin-bottom: 0px!important;
+    text-align:center;
+}
+
+.containerMio{
+    margin-bottom: 0px!important;
+    padding: 1em 0!important;
+}
+
+.divRadios{
+	margin-top:35px;
+}
+
+.btnarchivo{
+  padding: 7px 20px!important;
+  font-size: 15px!important;
+  color: #fff;
+  background-color: #f0ad4e;
+  border-color: #f0ad4e;
+  text-align:center;
+  margin-left: 90px;
+  margin-right: 90px;
+  border-radius:8px;
+}
+
+.selecteador{
+  margin-left: 90px!important;
+  margin-right: 90px!important;
+}
+
+.logo{
+  margin-bottom: 2vh;
+}
+
+.logo .title{
+  font-family: Signika-Medium;
+  font-size: 3em;color: #003a4a;
+}
+
+
+
+@font-face {
+  font-family: 'Signika-Medium';
+  src: local('Signika-Medium'), url('../fonts/Signika-Medium.ttf') format('truetype');
+}

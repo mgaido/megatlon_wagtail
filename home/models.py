@@ -33,16 +33,12 @@ class HomePage(Page):
     ]
 
 
-class BlogPageTag(TaggedItemBase):
-    content_object = ParentalKey('home.Pepe', on_delete=models.CASCADE, related_name='tagged_items')
-
 
 class Pepe(Page):
     template = "home/home_page.html"
 
     body = RichTextField(features=["bold", "italic"])
     date = models.DateField("Post date", null=True)
-    tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     feed_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -56,7 +52,6 @@ class Pepe(Page):
         FieldPanel('body'),
         FieldPanel('date'),
         FieldPanel('feed_image'),
-        FieldPanel('tags'),
     ]
 
 
